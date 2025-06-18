@@ -1,5 +1,6 @@
-const { document } = require('./helpers')
+const { document, dom } = require('./helpers')
 const { expect } = require('chai')
+require('../index.js');
 
 // Sample test suite for JavaScript event handling
 describe('Handling Events with JavaScript', () => {

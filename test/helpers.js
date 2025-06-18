@@ -1,14 +1,16 @@
-// Helpers for setting up the testing environment
-const { JSDOM } = require('jsdom')
-const fs = require('fs')
+const { JSDOM } = require('jsdom');
+const fs = require('fs');
+const path = require('path');
 
-const html = fs.readFileSync('src/index.html', 'utf8')
 
-const dom = new JSDOM(html)
-const document = dom.window.document
+const htmlPath = path.resolve(__dirname, '../index.html');
+const html = fs.readFileSync(htmlPath, 'utf8');
 
-global.document = document
+const dom = new JSDOM(html);
+const document = dom.window.document;
 
-module.exports = {
-  document,
-}
+global.document = document;
+global.window = dom.window;
+global.navigator = { userAgent: 'node.js' };
+
+module.exports = { document, dom };
